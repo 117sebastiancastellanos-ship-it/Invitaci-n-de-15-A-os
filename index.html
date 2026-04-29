@@ -3,26 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitación XV Años</title>
+    <title>Mis XV Años</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Georgia', serif; background-color: #fdfaf6; display: flex; justify-content: center; align-items: center; text-align: center; }
-        #pantalla-inicio { position: fixed; width: 100%; height: 100%; background: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.5s; }
-        .boton-entrar { padding: 18px 45px; font-size: 20px; background: #d4af37; color: white; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        #contenido { display: none; padding: 20px; animation: aparecer 2s ease forwards; }
-        @keyframes aparecer { from { opacity: 0; } to { opacity: 1; } }
+        /* ESTILOS GENERALES: Controlan cómo se ve todo el sitio */
+        body, html { margin: 0; padding: 0; font-family: 'Georgia', serif; background-color: #fdfaf6; color: #5a4a42; text-align: center; }
+        
+        /* PANTALLA DE INICIO: El protector que oculta la invitación hasta dar clic */
+        #pantalla-inicio {
+            position: fixed; width: 100%; height: 100%; background: white; z-index: 1000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 0.8s ease;
+        }
+
+        /* DISEÑO DE BOTONES: Estilo dorado para todos los botones del sitio */
+        .boton {
+            display: inline-block; padding: 15px 30px; margin: 10px;
+            font-size: 18px; background: #d4af37; color: white;
+            text-decoration: none; border: none; border-radius: 50px;
+            cursor: pointer; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: transform 0.2s;
+        }
+        .boton:active { transform: scale(0.95); } /* Efecto de hundido al tocar */
+
+        /* CONTENEDOR PRINCIPAL: Centra la invitación y le da forma de tarjeta */
+        #contenido { display: none; padding: 20px; max-width: 600px; margin: auto; animation: aparecer 2s ease; }
+        
+        /* IMÁGENES: Controla que las fotos no se salgan de la pantalla y se vean suaves */
+        .foto-invitacion { width: 100%; max-width: 450px; border-radius: 15px; margin: 20px 0; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+
+        @keyframes aparecer { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        h1 { color: #d4af37; font-size: 2.5em; margin-top: 20px; }
+        .seccion { margin: 40px 0; padding: 20px; border-bottom: 1px solid #eee; }
     </style>
 </head>
 <body>
 
     <div id="pantalla-inicio">
-        <p style="margin-bottom: 20px; color: #888;">Bienvenido a una noche mágica</p>
-        <button class="boton-entrar" id="btnComenzar">✨ Abrir Invitación ✨</button>
+        <p>Bienvenido a mi XV Aniversario</p>
+        <button class="boton" id="btnComenzar">✨ Abrir Invitación ✨</button>
     </div>
 
     <div id="contenido">
-        <h1 style="color: #d4af37;">Mis 15 Años</h1>
-        <p>Te espero para compartir un momento inolvidable.</p>
-        <p><i>Lindsey Stirling - Carol of the Bells</i></p>
+        
+        <img src="imagen1.jpeg" alt="Mis XV" class="foto-invitacion">
+
+        <h1>Mis 15 Años</h1>
+        <p>Hay momentos en la vida que son especiales por sí solos, pero compartirlos con las personas que amas los hace inolvidables.</p>
+
+        <div class="seccion">
+            <h3>⛪ Ceremonia Religiosa</h3>
+            <p>Parroquia de [Nombre]<br>Hora: 18:00 hrs</p>
+            <a href="https://maps.app.goo.gl/DT55SsK6YfoFn5gF8" target="_blank" class="boton">📍 Ver Ubicación</a>
+        </div>
+
+        <div class="seccion">
+            <h3>🎉 Recepción</h3>
+            <p>Salón de Eventos [Nombre]<br>Hora: 20:00 hrs</p>
+            <a href="https://maps.app.goo.gl/LEVxEWPDe55MqvnE8" target="_blank" class="boton">📍 Cómo llegar</a>
+        </div>
+
+        <div class="seccion">
+            <h3>📱 Confirmación</h3>
+            <p>Por favor, confirma tu asistencia antes del [Fecha].</p>
+            <a href="https://w.app/fbynve" target="_blank" class="boton" style="background-color: #25d366;">✅ Confirmar por WhatsApp</a>
+        </div>
+
+        <img src="decoracion.jpg" alt="Adorno" class="foto-invitacion" style="max-width: 200px; opacity: 0.6;">
+        <p style="font-style: italic; color: #d4af37;">Te espero para celebrar juntos.</p>
     </div>
 
     <audio id="reproductor" loop playsinline>
@@ -33,19 +81,20 @@
         const btn = document.getElementById('btnComenzar');
         const audio = document.getElementById('reproductor');
 
+        // FUNCIÓN PRINCIPAL: Se activa al tocar el botón de inicio
         btn.addEventListener('click', function() {
-            // Reproducir el archivo local musica.mp3
-            audio.play().then(() => {
-                // Si funciona, mostramos la invitación
-                document.getElementById('pantalla-inicio').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('pantalla-inicio').style.display = 'none';
-                    document.getElementById('contenido').style.display = 'block';
-                }, 500);
-            }).catch(err => {
-                alert("No se pudo cargar el archivo 'musica.mp3'. Asegúrate de que esté en la misma carpeta que este HTML.");
-                console.error(err);
-            });
+            
+            // 1. Inicia la música (obligatorio por seguridad del navegador)
+            audio.play().catch(err => console.log("Esperando interacción..."));
+
+            // 2. Oculta la pantalla blanca de inicio
+            document.getElementById('pantalla-inicio').style.opacity = '0';
+            
+            // 3. Muestra el contenido de la invitación después de medio segundo
+            setTimeout(() => {
+                document.getElementById('pantalla-inicio').style.display = 'none';
+                document.getElementById('contenido').style.display = 'block';
+            }, 500);
         });
     </script>
 </body>
