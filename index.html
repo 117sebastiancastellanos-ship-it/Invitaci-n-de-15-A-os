@@ -6,15 +6,86 @@
     <title>Mis XV Años</title>
     <style>
         /* ESTILOS QUE YA TENÍAS */
-        body, html { margin: 0; padding: 0; font-family: 'Georgia', serif; background-color: #fdfaf6; color: #5a4a42; text-align: center; }
-        #pantalla-inicio { position: fixed; width: 100%; height: 100%; background: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.8s ease; }
-        .boton { display: inline-block; padding: 15px 30px; margin: 10px; font-size: 18px; background: #d4af37; color: white; text-decoration: none; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); transition: transform 0.2s; }
-        .boton:active { transform: scale(0.95); }
-        #contenido { display: none; padding: 20px; max-width: 600px; margin: auto; animation: aparecer 2s ease; }
-        .foto-invitacion { width: 100%; max-width: 450px; border-radius: 15px; margin: 20px 0; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        @keyframes aparecer { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        h1 { color: #d4af37; font-size: 2.5em; margin-top: 20px; }
-        .seccion { margin: 40px 0; padding: 20px; border-bottom: 1px solid #eee; }
+	body, html { 
+    	margin: 0; 
+    	padding: 0; 
+    	font-family: 'Georgia', serif; 
+    	/* Cambiamos el color de fondo aquí */
+    	background-color: #002366; 
+    	/* Cambiamos el color del texto a blanco o crema para que se lea bien sobre el azul */
+    	color: #fdfaf6; 
+    	text-align: center; 
+	}
+
+        #pantalla-inicio { 
+	position: fixed; 
+	width: 100%; 
+	height: 100%; 
+	background: white; 
+	z-index: 1000; 
+	display: flex; 
+	flex-direction: column; 
+	justify-content: center; 
+	align-items: center; 
+	transition: opacity 0.8s ease; 
+	}
+
+        .boton { 
+	display: inline-block; 
+	padding: 15px 30px; 
+	margin: 10px; 
+	font-size: 18px; 
+	background: #d4af37; 
+	color: white; 
+	text-decoration: none; 
+	border: none; 
+	border-radius: 50px; 
+	cursor: pointer; 
+	box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); 
+	transition: transform 0.2s; 
+	}
+
+        .boton:active { 
+	transform: scale(0.95); 
+	}
+
+        #contenido { 
+	display: none; 
+	padding: 20px; 
+	max-width: 600px; 
+	margin: auto; 
+	animation: aparecer 2s ease; 
+	}
+
+        .foto-invitacion { 
+	width: 100%; 
+	max-width: 450px; 
+	border-radius: 15px; 
+	margin: 20px 0; 
+	box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+	}
+
+        @keyframes aparecer { 
+	from { 
+		opacity: 0; transform: translateY(20px); 
+		}
+	to { 
+	opacity: 1; 
+	transform: translateY(0); 
+	} }
+
+        h1 { 
+	color: #d4af37; 
+	font-size: 2.5em; 
+	margin-top: 20px; 
+	}
+
+        .seccion { 
+	margin: 40px 0; 
+	padding: 20px; 
+	border-bottom: 1px solid #eee; 
+	}
+
 
         /* --- NUEVOS ESTILOS PARA LA CUENTA REGRESIVA --- */
         #cuenta-regresiva {
