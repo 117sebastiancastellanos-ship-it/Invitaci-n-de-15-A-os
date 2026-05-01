@@ -5,216 +5,152 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis XV Años</title>
     <style>
-        /* ESTILOS QUE YA TENÍAS */
-	body, html { 
-    	margin: 0; 
-    	padding: 0; 
-    	font-family: 'Georgia', serif; 
-    	/* Cambiamos el color de fondo aquí */
-    	background-color: #002366; 
-    	/* Cambiamos el color del texto a Negro */
-    	color: #fdfaf6; 
-    	text-align: center; 
-	}
+        /* ESTILOS DE FONDO Y CUERPO */
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Georgia', serif; 
+            /* Aplicamos tu imagen fondo1.jpg para que se repita hacia abajo */
+            background-image: url('fondo1.jpg'); 
+            background-repeat: repeat-y; 
+            background-position: center top; 
+            background-size: contain; 
+            background-attachment: scroll;
+            background-color: #fdfaf6; /* Color de respaldo */
+            color: #1a3a5f; /* Azul oscuro para el texto */
+            text-align: center; 
+        }
 
-        #pantalla-inicio { 
-	position: fixed; 
-	width: 100%; 
-	height: 100%; 
-	background: white; 
-	z-index: 1000; 
-	display: flex; 
-	flex-direction: column; 
-	justify-content: center; 
-	align-items: center; 
-	transition: opacity 0.8s ease; 
-	}
+        /* PANTALLA DE INICIO (Cubre la invitación al entrar) */
+        #pantalla-inicio {
+            position: fixed; width: 100%; height: 100%; background: white; z-index: 1000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 0.8s ease;
+        }
 
-        .boton { 
-	display: inline-block; 
-	padding: 15px 30px; 
-	margin: 10px; 
-	font-size: 18px; 
-	background: #d4af37; 
-	color: white; 
-	text-decoration: none; 
-	border: none; 
-	border-radius: 50px; 
-	cursor: pointer; 
-	box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); 
-	transition: transform 0.2s; 
-	}
+        /* BOTONES DORADOS */
+        .boton {
+            display: inline-block; padding: 15px 30px; margin: 10px;
+            font-size: 18px; background: #d4af37; color: white;
+            text-decoration: none; border: none; border-radius: 50px;
+            cursor: pointer; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: transform 0.2s;
+        }
+        .boton:active { transform: scale(0.95); }
 
-        .boton:active { 
-	transform: scale(0.95); 
-	}
-
+        /* CONTENEDOR CON TRANSPARENCIA BLANCA: 
+           Esto hace que el fondo se vea a los lados pero el texto sea legible */
         #contenido { 
-	display: none; 
-	padding: 20px; 
-	max-width: 600px; 
-	margin: auto; 
-	animation: aparecer 2s ease; 
-	}
-
-        .foto-invitacion { 
-	width: 100%; 
-	max-width: 450px; 
-	border-radius: 15px; 
-	margin: 20px 0; 
-	box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-	}
-
-        @keyframes aparecer { 
-	from { 
-		opacity: 0; transform: translateY(20px); 
-		}
-	to { 
-	opacity: 1; 
-	transform: translateY(0); 
-	} }
-
-        h1 { 
-	color: #d4af37; 
-	font-size: 2.5em; 
-	margin-top: 20px; 
-	}
-
-        .seccion { 
-	margin: 40px 0; 
-	padding: 20px; 
-	border-bottom: 1px solid #eee; 
-	}
-
-
-        /* --- NUEVOS ESTILOS PARA LA CUENTA REGRESIVA --- */
-        #cuenta-regresiva {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
+            display: none; 
+            padding: 20px; 
+            max-width: 550px; 
+            margin: 20px auto; 
+            background-color: rgba(255, 255, 255, 0.85); 
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            animation: aparecer 2s ease; 
         }
-        .tiempo-bloque {
-            background: #d4af37; /* Color dorado */
-            color: white;
-            padding: 10px;
-            border-radius: 10px;
-            min-width: 65px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .numero {
-            display: block;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .etiqueta {
-            font-size: 12px;
-            text-transform: uppercase;
-        }
+
+        /* CUENTA REGRESIVA (Bloques dorados) */
+        #cuenta-regresiva { display: flex; justify-content: center; gap: 10px; margin: 25px 0; }
+        .tiempo-bloque { background: #d4af37; color: white; padding: 10px; border-radius: 10px; min-width: 60px; }
+        .numero { display: block; font-size: 22px; font-weight: bold; }
+        .etiqueta { font-size: 11px; text-transform: uppercase; }
+
+        /* IMÁGENES */
+        .foto-invitacion { width: 100%; max-width: 400px; border-radius: 15px; margin: 15px 0; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+
+        @keyframes aparecer { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        h1 { color: #d4af37; font-size: 2.2em; }
+        .seccion { margin: 30px 0; padding-bottom: 20px; border-bottom: 1px solid #d4af37; }
     </style>
 </head>
 <body>
 
+    <!-- Pantalla para activar música y efectos -->
     <div id="pantalla-inicio">
         <p>Bienvenido a mi XV Aniversario</p>
         <button class="boton" id="btnComenzar">✨ Abrir Invitación ✨</button>
     </div>
 
+    <!-- Contenedor Principal de la invitación -->
     <div id="contenido">
-        <h1>Mis 15 Años</h1>
+        
+        <img src="imagen1.jpeg" alt="Mis XV" class="foto-invitacion">
 
-		<br>
-		<img src="imagen1.jpeg" alt="Mis XV" class="foto-invitacion">
-	<h1>Perla Esmeralda</h1>
-		
-		<br>
-        <p>Hay momentos en la vida que son especiales por sí solos, pero compartirlos con las personas que amas los hace inolvidables.</p>
-		<br>
-		<br>
-		
-        <h2 style="color: #d4af37;">Faltan:</h2>
+        <!-- CUENTA REGRESIVA -->
+        <h2 style="color: #d4af37; font-size: 1.2em;">Faltan:</h2>
         <div id="cuenta-regresiva">
-            <div class="tiempo-bloque">
-                <span class="numero" id="dias">00</span>
-                <span class="etiqueta">Días</span>
-            </div>
-            <div class="tiempo-bloque">
-                <span class="numero" id="horas">00</span>
-                <span class="etiqueta">Hs</span>
-            </div>
-            <div class="tiempo-bloque">
-                <span class="numero" id="minutos">00</span>
-                <span class="etiqueta">Min</span>
-            </div>
-            <div class="tiempo-bloque">
-                <span class="numero" id="segundos">00</span>
-                <span class="etiqueta">Seg</span>
-            </div>
+            <div class="tiempo-bloque"><span class="numero" id="dias">00</span><span class="etiqueta">Días</span></div>
+            <div class="tiempo-bloque"><span class="numero" id="horas">00</span><span class="etiqueta">Hrs</span></div>
+            <div class="tiempo-bloque"><span class="numero" id="minutos">00</span><span class="etiqueta">Min</span></div>
+            <div class="tiempo-bloque"><span class="numero" id="segundos">00</span><span class="etiqueta">Seg</span></div>
         </div>
 
+        <h1>Mis 15 Años</h1>
+        <p>Hay momentos en la vida que son especiales por sí solos, pero compartirlos con las personas que amas los hace inolvidables.</p>
+
+        <!-- SECCIÓN MISA -->
         <div class="seccion">
-            <img src="imagen3.jpeg" alt="Parroquia Jesús Obrero" class="foto-invitacion">
+            <img src="imagen3.jpeg" alt="Misa" class="foto-invitacion">
             <h3>⛪ Ceremonia</h3>
-            <p style="font-style: italic; color: #d4af37;">Parroquia Jesús Obrero</p>
-            <p>Calle Martin López esquina con Pino Suarez col. División del norte<br><br>Hora: 05:00 PM a 6:00 PM</p>
+            <p>Parroquia Jesús Obrero<br>Calle Martin López esquina con Pino Suarez col. División del norte<br>Hora: 05:00 PM</p>
             <a href="https://maps.app.goo.gl/DT55SsK6YfoFn5gF8" target="_blank" class="boton">📍 Ver Ubicación</a>
         </div>
 
+        <!-- SECCIÓN RECEPCIÓN -->
         <div class="seccion">
-            <img src="imagen4.jpg" alt="Salón y Terraza Ilusión" class="foto-invitacion">
+            <img src="imagen4.jpg" alt="Salón" class="foto-invitacion">
             <h3>🎉 Recepción</h3>
-            <p style="font-style: italic; color: #d4af37;">Salón y Terraza Ilusión</p>
-	    <p>Privada Ejido el Vergel 1277 col. Patria<br><br>Hora: 08:30 PM a 01:30 AM</p>
+            <p>Salón y Terraza Ilusión<br>Privada Ejido el Vergel 1277 col. Patria<br>Hora: 08:00 PM</p>
             <a href="https://maps.app.goo.gl/LEVxEWPDe55MqvnE8" target="_blank" class="boton">📍 Cómo llegar</a>
         </div>
 
+        <!-- SECCIÓN WHATSAPP -->
         <div class="seccion">
             <h3>📱 Confirmación</h3>
             <p>Por favor, confirma tu asistencia.</p>
-            <a href="https://wa.link/tevhox" target="_blank" class="boton" style="background-color: #25d366;">✅ Confirmar por WhatsApp</a>
+            <a href="https://w.app/fbynve" target="_blank" class="boton" style="background-color: #25d366;">✅ Confirmar por WhatsApp</a>
         </div>
 
-        <p style="font-style: italic; color: #d4af37;">Te espero para celebrar juntos.</p>
+        <p style="font-style: italic; color: #d4af37; padding-bottom: 20px;">Te espero para celebrar juntos.</p>
     </div>
 
+    <!-- Audio Configurado -->
     <audio id="reproductor" loop playsinline>
         <source src="musica.mp3" type="audio/mpeg">
     </audio>
 
     <script>
         // LÓGICA DE LA CUENTA REGRESIVA
-        // IMPORTANTE: Cambia esta fecha por la de tus XV años
-        const fechaEvento = new Date("June 20, 2026 17:00:00").getTime();
-		
+        const fechaEvento = new Date("August 10, 2026 17:00:00").getTime(); // Ajusté la fecha según tu imagen
+
         const contador = setInterval(function() {
             const ahora = new Date().getTime();
             const diferencia = fechaEvento - ahora;
 
-            // Cálculos de tiempo
             const d = Math.floor(diferencia / (1000 * 60 * 60 * 24));
             const h = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-            // Mostrar resultados en los elementos
             document.getElementById("dias").innerHTML = d;
             document.getElementById("horas").innerHTML = h;
             document.getElementById("minutos").innerHTML = m;
             document.getElementById("segundos").innerHTML = s;
 
-            // Si la fecha ya pasó
             if (diferencia < 0) {
                 clearInterval(contador);
                 document.getElementById("cuenta-regresiva").innerHTML = "¡Es hoy!";
             }
         }, 1000);
 
-        // FUNCIÓN DEL BOTÓN (Música y desvanecimiento)
+        // LÓGICA DEL BOTÓN INICIAL
         const btn = document.getElementById('btnComenzar');
         const audio = document.getElementById('reproductor');
 
         btn.addEventListener('click', function() {
-            audio.play().catch(err => console.log("Esperando interacción..."));
+            audio.play().catch(err => console.log("Interacción requerida"));
             document.getElementById('pantalla-inicio').style.opacity = '0';
             setTimeout(() => {
                 document.getElementById('pantalla-inicio').style.display = 'none';
