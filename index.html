@@ -21,18 +21,32 @@
             text-align: center; 
         }
 
-        /* PANTALLA DE INICIO */
+        /* PANTALLA DE INICIO MODIFICADA */
         #pantalla-inicio { 
             position: fixed; 
             width: 100%; 
             height: 100%; 
-            background: white; 
+            /* Imagen de fondo solicitada */
+            background-image: url('imagen0.png');
+            background-size: cover;
+            background-position: center;
             z-index: 1000; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
             align-items: center; 
             transition: opacity 0.8s ease; 
+        }
+
+        /* CAPA DE LEGIBILIDAD PARA EL TEXTO INICIAL */
+        .contenedor-bienvenida {
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo claro para resaltar texto */
+            padding: 25px;
+            margin: 20px;
+            border-radius: 20px;
+            max-width: 85%;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px); /* Efecto de desenfoque suave al fondo */
         }
 
         /* BOTONES */
@@ -53,9 +67,7 @@
 
         .boton:active { transform: scale(0.95); }
 
-        /* CONTENEDOR CON CAPA DE LEGIBILIDAD:
-           Añadimos un fondo azul oscuro semi-transparente para que el 
-           texto resalte sobre las mariposas del fondo */
+        /* CONTENEDOR CON CAPA DE LEGIBILIDAD */
         #contenido { 
             display: none; 
             padding: 20px; 
@@ -97,8 +109,10 @@
 <body>
 
     <div id="pantalla-inicio">
-        <p style="color: #002366;">Bienvenido al XV Aniversario de Perla Esmeralda</p>
-        <p style="color: #002366;">Hay momentos en la vida que son especiales por sí solos, pero compartirlos con las personas que amas los hace inolvidables.</p>
+        <div class="contenedor-bienvenida">
+            <p style="color: #002366; font-weight: bold; font-size: 1.1em;">Bienvenido al XV Aniversario de Perla Esmeralda</p>
+            <p style="color: #002366;">Hay momentos en la vida que son especiales por sí solos, pero compartirlos con las personas que amas los hace inolvidables.</p>
+        </div>
         <button class="boton" id="btnComenzar">✨ Abrir Invitación ✨</button>
     </div>
 
@@ -136,13 +150,13 @@
         </div>
 
         <div class="seccion">
-	    <h2 style="color: #d4af37;">Código de Vestimenta</h2>
+            <h2 style="color: #d4af37;">Código de Vestimenta</h2>
             <img src="imagen2.png" alt="Código de Vestimenta" class="foto-invitacion">
             <p>Vestimenta semi formal reservando el color azul rey para la quinceañera.</p>
         </div>
 
         <div class="seccion">
-	    <h2 style="color: #d4af37;">Lluvia de Sobres</h2>
+            <h2 style="color: #d4af37;">Lluvia de Sobres</h2>
             <img src="imagen5.png" alt="Lluvia de Sobres" class="foto-invitacion">
             <p>El mejor regalo es que compartas con nosotros este día tan especial, pero si deseas dar un obsequio adelante.</p>
         </div>
